@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Scroll reveal (cards) ---
   function revealOnScroll() {
-    const elements = document.querySelectorAll('.rank-card, .feature-card, .staff-card');
+    const elements = document.querySelectorAll('.rank-card, .feature-card, .staff-card, .rule-card');
     elements.forEach((el, index) => {
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight * 0.88) {
