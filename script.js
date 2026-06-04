@@ -293,4 +293,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // --- Minecraft Server Status API Integration ---
+  const serverIp = 'SrVirguezMC.aternos.me';
+  const serverStatusDot = document.getElementById('server-status-dot');
+  const serverStatusText = document.getElementById('server-status-text');
+
+  async function checkServerStatus() {
+    if (!serverStatusText) return;
+    try {
+      // Use mcsrvstat.us API for direct, clean JSON responses
+      const response = await fetch(`https://api.mcsrvstat.us/2/${serverIp}`);
+      if (!response.ok) throw new Error('API response error');
+      const data = await response.json();
+      
+      if (data.online) {
+        if (serverStatusDot) {
+          serverStatusDot.style.background = '#4ade80';
+          serverStatusDot.style.boxShadow = '0 0 10px #4ade80';
+        }
+        serverStatusText.textContent = `🟢 Online | ${data.players.online}/${data.players.max} jugadores`;
+      } else {
+        if (serverStatusDot) {
+          serverStatusDot.style.background = '#f87171';
+          serverStatusDot.style.boxShadow = '0 0 10px #f87171';
+        }
+        serverStatusText.textContent = '🔴 Servidor Apagado / Offline';
+      }
+    } catch (error) {
+      if (serverStatusDot) {
+        serverStatusDot.style.background = '#fbbf24';
+        serverStatusDot.style.boxShadow = '0 0 10px #fbbf24';
+      }
+      serverStatusText.textContent = '🟡 Estado Desconocido';
+    }
+  }
+
+  // Check on load and update every 30 seconds (Aternos may take time to react)
+  checkServerStatus();
+  setInterval(checkServerStatus, 30000);
+
 });

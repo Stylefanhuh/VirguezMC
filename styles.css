@@ -375,6 +375,40 @@ img {
   top: -35px;
 }
 
+.hero-status {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  animation: heroFadeIn 1s ease-out 0.95s both;
+}
+
+.server-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fbbf24; /* yellow default for loading */
+  box-shadow: 0 0 8px #fbbf24;
+  transition: all 0.3s ease;
+}
+
+.status-text {
+  font-family: var(--font-body);
+}
+
 .hero-scroll-indicator {
   position: absolute;
   bottom: 2rem;
