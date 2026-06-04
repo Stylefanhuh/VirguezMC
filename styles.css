@@ -1358,21 +1358,57 @@ img {
 
 .staff-avatar-wrapper {
   position: relative;
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 120px;
   margin-bottom: 1.5rem;
   border-radius: var(--radius-md);
-  padding: 4px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .staff-avatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 4px;
+  position: absolute;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   image-rendering: pixelated; /* Perfect for Minecraft skin head! */
-  object-fit: cover;
+  /* Identity transformations to establish stacking context and prevent shifts */
+  translate: 0px 0px;
+  scale: 1;
+  rotate: 0deg;
+}
+
+.staff-avatar--2d {
+  width: 72px;
+  height: 72px;
+  opacity: 1;
+  scale: 1;
+  translate: 0px 0px;
+  z-index: 2;
+}
+
+.staff-avatar--3d {
+  width: auto;
+  height: 104px;
+  opacity: 0;
+  scale: 0.7;
+  translate: 0px 20px;
+  z-index: 1;
+}
+
+.staff-card:hover .staff-avatar--2d {
+  opacity: 0;
+  scale: 0.6;
+  translate: 0px -20px;
+}
+
+.staff-card:hover .staff-avatar--3d {
+  opacity: 1;
+  scale: 1;
+  translate: 0px 0px;
 }
 
 .staff-name {
